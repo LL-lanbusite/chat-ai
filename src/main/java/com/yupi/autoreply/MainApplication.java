@@ -12,9 +12,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 主类（项目启动入口）
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
  */
 @SpringBootApplication
 @EnableScheduling
@@ -29,8 +26,8 @@ public class MainApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         OpenAiConfig openAiConfig = SpringContextUtils.getBean(OpenAiConfig.class);
-        ZsxqConfig zsxqConfig = SpringContextUtils.getBean(ZsxqConfig.class);
-        log.info("OpenAi 配置 {}", zsxqConfig);
-        log.info("知识星球配置 {}", openAiConfig);
+//        ZsxqConfig zsxqConfig = SpringContextUtils.getBean(ZsxqConfig.class);
+//        log.info("OpenAi 配置 {}", zsxqConfig);
+        log.info("OpenAi配置 {}", openAiConfig);
     }
 }

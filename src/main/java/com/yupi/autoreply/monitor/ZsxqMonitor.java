@@ -18,17 +18,15 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
- * 知识星球监控者
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+ * 监控者
  */
 @Slf4j
 public class ZsxqMonitor extends Monitor {
 
-//    private final ZsxqApi zsxqApi = SpringContextUtils.getBean(ZsxqApi.class);
+    private final ZsxqApi zsxqApi = SpringContextUtils.getBean(ZsxqApi.class);
 
 //    private final ZsxqConfig zsxqConfig = SpringContextUtils.getBean(ZsxqConfig.class);
 
@@ -37,7 +35,7 @@ public class ZsxqMonitor extends Monitor {
     }
 
     @Override
-    public void onMonitor(Answerer answerer, String question) {
+    public void onMonitor(Answerer answerer) {
         String taskName = taskListItem.getName();
         log.info("任务 {} 监控开始", taskName);
 //        String cookie = zsxqConfig.getCookie();
@@ -46,23 +44,33 @@ public class ZsxqMonitor extends Monitor {
 //        listTopicsRequest.setCount(20);
 //        listTopicsRequest.setGroupId(zsxqConfig.getGroupId());
 //        listTopicsRequest.setScope("unanswered_questions");
-        //  获取客户端输入的问题
-//        ListTopicsResponse listTopicsResponse = zsxqApi.listTopicsV2(listTopicsRequest);
+        String question = zsxqApi.listTopicsV2();
 //        List<ListTopicsResponse.TopicsItem> topics = listTopicsResponse.getRespData().getTopics();
 //        if (CollectionUtils.isEmpty(topics)) {
 //            log.info("暂无新提问");
 //            return;
 //        }
-        if (StringUtils.isEmpty(question)) {
-            log.info("暂无问答");
-            return;
-        }
+            if (StringUtils.isEmpty(question)) {
+                log.info("暂无问答");
+                return;
+            }
 //        for (ListTopicsResponse.TopicsItem topic : topics) {
 //            String question = topic.getQuestion().getText().trim();
-            question = question.trim();
-            log.info("{} 收到新提问 \n 问题：{}", taskName, question);
-            // 2. 获取回答
+
+//        while (!StringUtils.isEmpty(question)) {
+//            question = question.trim();
+            log.info("\n{} 收到新提问 \n 问题：{}", taskName, question);
             String answer = answerer.doAnswer(question);
+            log.info("\n [{}] 回答成功 \n 问题：[{}] \n 回答: [{}]," ,taskName, question, answer);
+            try {
+                Thread.sleep(1000 + RandomUtil.randomInt(0, 2000));
+            } catch (InterruptedException e) {
+                throw new BusinessException(ErrorCode.SYSTEM_ERROR, e.getMessage());
+            }
+//        }
+
+            // 2. 获取回答
+//            String answer = answerer.doAnswer(question);
             // 3. 回复
 //            AnswerRequest answerRequest = new AnswerRequest();
 //            answerRequest.setTopicId(topic.getTopicId());
@@ -77,13 +85,13 @@ public class ZsxqMonitor extends Monitor {
 //            } else {
 //                log.error("{} 回答失败 \n 问题：{}", taskName, question);
 //            }
-            log.info("[{}] 回答成功 \n 问题：[{}] \n 回答: [{}]," ,taskName, question, answer);
+//            log.info("\n [{}] 回答成功 \n 问题：[{}] \n 回答: [{}]," ,taskName, question, answer);
             // 随机缓冲
-            try {
-                Thread.sleep(1000 + RandomUtil.randomInt(0, 2000));
-            } catch (InterruptedException e) {
-                throw new BusinessException(ErrorCode.SYSTEM_ERROR, e.getMessage());
-            }
+//            try {
+//                Thread.sleep(1000 + RandomUtil.randomInt(0, 2000));
+//            } catch (InterruptedException e) {
+//                throw new BusinessException(ErrorCode.SYSTEM_ERROR, e.getMessage());
+//            }
 //        }
         log.info("任务 {} 监控结束", taskName);
     }

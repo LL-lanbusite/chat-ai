@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <link href="/static/css/semantic.min.css"/>-->
+    <style>
+        body{
+            background-color: #b5bfb53d;
+        }
+        .m-border {
+            border: 1px solid blueviolet;
+            border-radius: 10px;
+        }
+        .m-hei-900 {
+            height: 900px;
+        }
+        .m-wid-1080 {
+            width: 1080px;
+        }
+        ._container {
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        ._content-color {
+            background-color: whitesmoke;
+        }
+        .m-pad-t {
+            padding: 50px;
+        }
+        .questionItem {
+            position: relative;
+        }
+        ._right {
+            position: absolute;
+            right: 0;
+        }
+        .m-dis-flex-r {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .m-dis-flex-l {
+            display: flex;
+            justify-content: flex-start;
+        }
+        ._left {
+            position: absolute;
+            left: 0;
+        }
+        .m-pos-r {
+            position: relative;
+        }
+        .user_img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .btn_img {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+        }
+        .m-mar-l-10 {
+            margin-left: 10px;
+        }
+        .m-mar-r-10 {
+            margin-right: 10px;
+        }
+        .wen, .wen_ok {
+            padding-left: 10px;
+            padding-right: 10px;
+            min-height: 40px;
+            line-height: 40px;
+            max-width: 800px;
+            background-color: #c2e6e736;
+            border-radius: 10px;
+        }
+        .wen {
+            background-color: blueviolet;
+            color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+<div class="_container m-wid-1080 m-hei-900">
+    <div class="_content m-border m-hei-900 _content-colo m-pos-rr">
+        <div class="m-pad-t">
+            <div class="questionItem">
+                <div class="m-dis-flex-r">
+                    <div class="wen m-mar-r-10">
+                        你好
+                    </div>
+                    <img src="/static/images/user.png" class="user_img" alt="">
+                </div>
+                <div class=" m-dis-flex-l">
+                    <img src="/static/images/index.png" class="user_img" alt="">
+                    <div class="wen_ok m-mar-l-10">
+                       wozhidao le
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="ui icon input">
+                <input id="in" style="width: 600px;height: 40px" type="text" name="question" placeholder="Enter your question here...">
+                <i class="inverted circular search link icon"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script src="/static/js/jquery.js"/>-->
+<!--<script src="/static/js/semantic.min.js"/>-->
+<script>
+    var input = window.document.getElementById('in');
+    input.addEventListener('blur', function () {
+        submitInfo();
+    })
+
+    function submitInfo() {
+        let question = input.value;
+        console.log("问题: " + question);
+    }
+
+    function getAnswer(str) {
+        $.ajax({
+            url: '',
+            type: 'post',
+            data: {
+                question: str
+            },
+            success: function (data) {
+                if (data.code == 200) {
+
+                }
+            }
+
+        })
+    }
+</script>
+</body>
+</html>

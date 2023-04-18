@@ -1,6 +1,10 @@
 package com.yupi.autoreply.controller;
 
+import com.yupi.autoreply.common.BaseResponse;
+import com.yupi.autoreply.monitor.ZsxqMonitor;
+import com.yupi.autoreply.service.impl.AskImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -15,4 +19,12 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class MainController {
 
+    @Autowired
+    private AskImpl ask;
+
+    @PostMapping("/ask")
+    public BaseResponse<String> ask(String question) {
+        ask.ask(question);
+        return null;
+    }
 }

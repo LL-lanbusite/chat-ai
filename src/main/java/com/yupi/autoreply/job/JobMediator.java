@@ -5,6 +5,7 @@ import com.yupi.autoreply.factory.AnswererFactory;
 import com.yupi.autoreply.factory.MonitorFactory;
 import com.yupi.autoreply.model.TaskListItem;
 import com.yupi.autoreply.monitor.Monitor;
+import com.yupi.autoreply.observable.QuestionObserver;
 
 /**
  * 任务中介（负责协调监控者和回答者，把参数传给他们）

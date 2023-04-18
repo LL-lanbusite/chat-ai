@@ -44,7 +44,7 @@ public class ZsxqMonitor extends Monitor {
 //        listTopicsRequest.setCount(20);
 //        listTopicsRequest.setGroupId(zsxqConfig.getGroupId());
 //        listTopicsRequest.setScope("unanswered_questions");
-        String question = zsxqApi.listTopicsV2();
+        String question = zsxqApi.getQuestion();
 //        List<ListTopicsResponse.TopicsItem> topics = listTopicsResponse.getRespData().getTopics();
 //        if (CollectionUtils.isEmpty(topics)) {
 //            log.info("暂无新提问");

@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * 知识星球接口
@@ -23,10 +25,11 @@ import java.util.Map;
  * @from <a href="https://yupi.icu">编程导航知识星球</a>
  */
 @Service
-public class ZsxqApi {
+public class ZsxqApi implements Observer {
 
     private static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/111.0";
 
+    private String question;
     /**
      * 获取主题列表
      *
@@ -54,8 +57,12 @@ public class ZsxqApi {
         return JSONUtil.toBean(result, ListTopicsResponse.class);
     }
 
-    public String listTopicsV2() {
-        return "你好";
+    public void listTopicsV2(String question) {
+        this.question = question;
+    }
+
+    public String getQuestion(){
+        return this.question;
     }
 
     /**
@@ -82,6 +89,12 @@ public class ZsxqApi {
                 .execute()
                 .body();
         return JSONUtil.toBean(result, AnswerResponse.class);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        String question = (String) arg;
+        listTopicsV2(question);
     }
 }
 

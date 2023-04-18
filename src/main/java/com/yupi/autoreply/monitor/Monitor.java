@@ -22,5 +22,5 @@ public abstract class Monitor {
      *
      * @param answerer
      */
-    public abstract void onMonitor(Answerer answerer);
+    public abstract void onMonitor(Answerer answerer, String question);
 }

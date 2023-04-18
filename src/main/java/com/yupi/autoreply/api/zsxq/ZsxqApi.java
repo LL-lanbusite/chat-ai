@@ -54,6 +54,24 @@ public class ZsxqApi {
         return JSONUtil.toBean(result, ListTopicsResponse.class);
     }
 
+    public ListTopicsResponse listTopicsV2(ListTopicsRequest request) {
+        String groupId = request.getGroupId();
+        if (StringUtils.isBlank(groupId)) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "未传 groupId");
+        }
+//        String url = String.format("https://api.zsxq.com/v2/groups/%s/topics", groupId);
+        Map<String, Object> stringObjectMap = BeanUtil.beanToMap(request);
+        String query = URLUtil.buildQuery(stringObjectMap, StandardCharsets.UTF_8);
+//        String result = HttpRequest.get(url)
+//                .header("cookie")
+//                .header("user-agent", USER_AGENT)
+//                .body(query)
+//                .execute()
+//                .body();
+//        return JSONUtil.toBean(result, ListTopicsResponse.class);
+        return null;
+    }
+
     /**
      * 回答问题
      *

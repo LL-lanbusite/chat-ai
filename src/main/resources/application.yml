@@ -14,14 +14,14 @@ server:
 # https://platform.openai.com/docs/api-reference
 openai:
   model: ${OPENAI_MODEL:text-davinci-003}
-  apiKey: ${OPENAI_API_KEY:你的apiKey}
+  apiKey: ${OPENAI_API_KEY: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}
 # 知识星球配置
 # https://zsxq.com/
-zsxq:
-  cookie: ${ZSXQ_COOKIE:你的星球cookie}
-  groupId: ${ZSXQ_GROUP_ID:你的星球id}
+#zsxq:
+#  cookie: ${ZSXQ_COOKIE:你的星球cookie}
+#  groupId: ${ZSXQ_GROUP_ID:你的星球id}
   # 是否提醒提问者
-  silenced: ${ZSXQ_SILENCED:true}
+#  silenced: ${ZSXQ_SILENCED:true}
 # 任务配置
 task:
   # 并发

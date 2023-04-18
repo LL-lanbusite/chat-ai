@@ -16,9 +16,10 @@ public class DefaultMonitor extends Monitor {
     }
 
     @Override
-    public void onMonitor(Answerer answerer) {
+    public void onMonitor(Answerer answerer, String question) {
         String mockMessage = "我是一个新的消息";
-        System.out.println(answerer.doAnswer(mockMessage));
+        question = mockMessage;
+        System.out.println(answerer.doAnswer(question));
     }
 
 }

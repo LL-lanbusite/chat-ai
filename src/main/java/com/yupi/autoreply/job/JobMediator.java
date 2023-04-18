@@ -25,7 +25,8 @@ public class JobMediator implements Runnable {
         // 根据配置选择 monitor 和 answerer
         Monitor monitor = MonitorFactory.createMonitor(taskListItem.getMonitor(), taskListItem);
         Answerer answerer = AnswererFactory.createAnswerer(taskListItem.getAnswerer());
+        String question = "欢迎";
         // 监控并回答
-        monitor.onMonitor(answerer);
+        monitor.onMonitor(answerer, question);
     }
 }

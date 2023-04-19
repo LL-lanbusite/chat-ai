@@ -13,10 +13,7 @@ RUN mvn package -DskipTests
 # 声明环境变量，这样容器就可以在运行时访问它们
 ENV OPENAI_MODEL=text-davinci-003
 ENV OPENAI_API_KEY=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
-# ENV ZSXQ_COOKIE=你的星球Cookie
-# ENV ZSXQ_GROUP_ID=你的星球id
-# 是否只提醒提问者
-# ENV ZSXQ_SILENCED=true
 
+EXPOSE 8091
 # Run the web service on container startup.
 ENTRYPOINT ["java","-jar","/app/target/yu-auto-reply-0.0.1-SNAPSHOT.jar","--spring.profiles.active=prod"]
